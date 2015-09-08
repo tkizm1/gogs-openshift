@@ -25,7 +25,7 @@ export PATH=$PATH:$GOROOT/bin
 cd $OPENSHIFT_DATA_DIR/gogs
 #kill -9 `ps aux | grep 'gogs' | grep -v grep | awk '{print $2}'` >/dev/null 2>&1 || true
 export HOME=/var/lib/openshift/$LOGNAME/app-root/data
-nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 & 
+#nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 & 
 #nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 &
 
 #cd $OPENSHIFT_DATA_DIR
