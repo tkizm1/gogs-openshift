@@ -8,7 +8,7 @@ set -e
 # Prepare the runtime
 [ -d $OPENSHIFT_RUNTIME_DIR/go ] ||
     curl  http://go.googlecode.com/files/go.go1.linux-amd64.tar.gz |
-    tar -xf - -C $OPENSHIFT_RUNTIME_DIR
+    tar -xzf - -C $OPENSHIFT_RUNTIME_DIR
 
 export GOROOT=$OPENSHIFT_RUNTIME_DIR/go
 export PATH=$PATH:$GOROOT/bin
