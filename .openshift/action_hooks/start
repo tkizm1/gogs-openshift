@@ -9,9 +9,23 @@ set -e
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
     curl  http://go.googlecode.com/files/go.go1.linux-amd64.tar.gz |
     tar -xzf - -C $OPENSHIFT_DATA_DIR
-curl https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip | tar -xf - -C $OPENSHIFT_DATA_DIR
+#curl https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip | tar -xf - -C $OPENSHIFT_DATA_DIR
+if [ ! -d $OPENSHIFT_DATA_DIR/gogs ]; 
+then
+    cd $OPENSHIFT_DATA_DIR  
+    wget https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip -O temp.zip; unzip temp.zip; rm temp.zip
+    cd gogs
+    mkdir conf
+    wget https://raw.githubusercontent.com/gogits/gogs/master/conf/app.ini -O conf/app.ini
+    echo "edit it after"
+    cd ..
+fi
 export GOROOT=$OPENSHIFT_DATA_DIR/go
 export PATH=$PATH:$GOROOT/bin
+cd $OPENSHIFT_DATA_DIR/gogs
+#kill -9 `ps aux | grep 'gogs' | grep -v grep | awk '{print $2}'` >/dev/null 2>&1 || true
+$HOME=/var/lib/openshift/$LOGNAME/app-root/data nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 & 
+#nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 &
 
 cd $OPENSHIFT_DATA_DIR
 pwd
