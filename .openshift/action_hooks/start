@@ -9,7 +9,7 @@ set -e
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
     curl  http://go.googlecode.com/files/go.go1.linux-amd64.tar.gz |
     tar -xzf - -C $OPENSHIFT_DATA_DIR
-curl http://gogs.dn.qbox.me/gogs_v0.6.9_linux_amd64.zip | tar -xf - -C $OPENSHIFT_DATA_DIR
+curl https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip | tar -xf - -C $OPENSHIFT_DATA_DIR
 export GOROOT=$OPENSHIFT_DATA_DIR/go
 export PATH=$PATH:$GOROOT/bin
 
