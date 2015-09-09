@@ -7,7 +7,7 @@ set -e
 
 # Prepare the runtime
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
-    curl  https://golang.org/doc/install?download=go1.5.1.linux-amd64.tar.gz |
+    curl https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz |
     tar -xzf - -C $OPENSHIFT_DATA_DIR
 #curl https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip | tar -xf - -C $OPENSHIFT_DATA_DIR
 if [ ! -d $OPENSHIFT_DATA_DIR/gogs ]; 
