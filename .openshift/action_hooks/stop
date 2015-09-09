@@ -6,9 +6,6 @@ if [ ! -f "$OPENSHIFT_DATA_DIR/gogs/run.pid" ]
 then
     client_result "Application is already stopped"
 else
-    #echo $(ps -ef | grep gogs | grep -v grep)
     kill -9 `cat $OPENSHIFT_DATA_DIR/gogs/run.pid`
     rm $OPENSHIFT_DATA_DIR/gogs/run.pid
-    #killall gogs
-    #kill `ps -ef | grep gogs | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
 fi
