@@ -5,6 +5,7 @@
 #nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy |& /usr/bin/logshifter -tag diy &
 set -e
 
+: '
 # Prepare the runtime
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
     curl https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz |
@@ -37,3 +38,17 @@ exit
 #pwd
 #cd hello
 #go build
+'
+export GOROOT=$OPENSHIFT_DATA_DIR/go
+export PATH=$PATH:$GOROOT/bin
+export GOPATH=$OPENSHIFT_REPO_DIR
+mkdir -p $GOPATH/src/github.com/gogits
+cd $GOPATH/src/github.com/gogits
+git clone -b develop https://github.com/gogits/gogs
+cd gogs
+go get -u -v ./...
+go build
+cp $OPENSHIFT_DATA_DIR/gogs/conf/app.ini conf/app.ini 
+echo 'done'
+exit
+
