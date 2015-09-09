@@ -39,19 +39,19 @@ exit
 #cd hello
 #go build
 '
-export GOROOT=$OPENSHIFT_DATA_DIR/go
-export PATH=$PATH:$GOROOT/bin
-export GOPATH=$OPENSHIFT_REPO_DIR
-mkdir -p $GOPATH/src/github.com/gogits
+#export GOROOT=$OPENSHIFT_DATA_DIR/go
+#export PATH=$PATH:$GOROOT/bin
+export GOPATH=$OPENSHIFT_REPO_DIR/gocode
+#mkdir -p $GOPATH/src/github.com/gogits
 cd $GOPATH/src/github.com/gogits
-git clone -b develop https://github.com/gogits/gogs
+#git clone -b develop https://github.com/gogits/gogs
 cd gogs
-go get -u -v ./...
+#go get -u -v ./...
 go get -u -tags "sqlite redis memecache" github.com/gogits/gogs
-go build
+#go build
 go build -tags "sqlite redis memecache"
-mkdir -p custom/conf
-cp $OPENSHIFT_DATA_DIR/gogs/conf/app.ini custom/conf/app.ini
+#mkdir -p custom/conf
+#cp $OPENSHIFT_DATA_DIR/gogs/conf/app.ini custom/conf/app.ini
 export HOME=$OPENSHIFT_DATA_DIR
 nohup ./gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid
 echo 'done'
