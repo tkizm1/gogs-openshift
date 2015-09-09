@@ -29,7 +29,6 @@ cd $OPENSHIFT_DATA_DIR/gogs
 echo $OPENSHIFT_GEAR_UUID
 export HOME=$OPENSHIFT_DATA_DIR
 cd $HOME
-id
 nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>$OPENSHIFT_DATA_DIR/gogs/err.log 2>&1 & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid 
 exit
 #nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 &
