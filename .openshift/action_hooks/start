@@ -55,6 +55,7 @@ go build -tags "sqlite redis memecache"
 #mkdir -p custom/conf
 #cp $OPENSHIFT_DATA_DIR/gogs/conf/app.ini custom/conf/app.ini
 export HOME=$OPENSHIFT_DATA_DIR
+export USERNAME=$OPENSHIFT_APP_UUID
 nohup ./gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid
 echo 'done'
 exit

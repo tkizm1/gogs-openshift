@@ -1,6 +1,0 @@
-#!/bin/sh
-
-DIR_HOOKS="${OPENSHIFT_REPO_DIR}.openshift/action_hooks"
-
-chmod +x "${DIR_HOOKS}/start"
-chmod +x "${DIR_HOOKS}/stop"
