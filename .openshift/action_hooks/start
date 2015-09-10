@@ -1,26 +1,29 @@
 #!/bin/bash
 # The logic to start up your application should be put in this
-# script. The application will work only if it binds to
-# $OPENSHIFT_DIY_IP:8080
-#nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy |& /usr/bin/logshifter -tag diy &
+# script. 
 set -e
 
-#: '
 # Prepare the runtime
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
     curl https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz |
     tar -xzf - -C $OPENSHIFT_DATA_DIR
 #curl https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip | tar -xf - -C $OPENSHIFT_DATA_DIR
+# end Prepare the runtime
+# Prepare the gogs
 if [ ! -d $OPENSHIFT_DATA_DIR/gogs ]; 
 then
     cd $OPENSHIFT_DATA_DIR  
     wget https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip -O temp.zip; unzip temp.zip; rm temp.zip
     cd gogs
-    mkdir conf
-    wget https://raw.githubusercontent.com/gogits/gogs/master/conf/app.ini -O conf/app.ini
+    mkdir custom/conf
+    wget https://raw.githubusercontent.com/gogits/gogs/master/conf/app.ini -O custom/conf/app.ini
     echo "edit it after"
-    cd ..
+    sed -i "" "s/^DOMAIN.*/DOMAIN = $OPENSHIFT_APP_DNS/g" custom/conf/app.ini 
+    sed -i "" "s/^HTTP_ADDR.*/HTTP_ADDR = $OPENSHIFT_DIY_IP/g" custom/conf/app.ini 
+    sed -i "" "s/^HTTP_PORT.*/HTTP_PORT = $OPENSHIFT_DIY_PORT/g" custom/conf/app.ini 
+    #cd ..
 fi
+# end Prepare gogs
 export GOROOT=$OPENSHIFT_DATA_DIR/go
 export PATH=$PATH:$GOROOT/bin
 cd $OPENSHIFT_DATA_DIR/gogs
@@ -34,30 +37,4 @@ cd $HOME/gogs
 HOME=$OPENSHIFT_DATA_DIR nohup $OPENSHIFT_DATA_DIR/gogs/gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid 
 exit
 #nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 &
-
-#cd $OPENSHIFT_DATA_DIR
-#pwd
-#cd hello
-#go build
-#'
-#edit in 
-#cd $OPENSHIFT_DATA_DIR/gocode/src/github.com/gogits/gogs/
-#export GOROOT=$OPENSHIFT_DATA_DIR/go
-#export PATH=$PATH:$GOROOT/bin
-#export GOPATH=$OPENSHIFT_DATA_DIR/gocode
-#mkdir -p $GOPATH/src/github.com/gogits
-#cd $GOPATH/src/github.com/gogits
-#git clone -b develop https://github.com/gogits/gogs
-#cd gogs
-#go get -u -v ./...
-#go get -u -tags "sqlite redis memecache" github.com/gogits/gogs
-#go build
-#go build -tags "sqlite redis memecache"
-#mkdir -p custom/conf
-#cp $OPENSHIFT_DATA_DIR/gogs/conf/app.ini custom/conf/app.ini
-#export HOME=$OPENSHIFT_DATA_DIR
-#export USERNAME=$OPENSHIFT_APP_UUID
-#nohup ./gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid
-#echo 'done'
-#exit
 
