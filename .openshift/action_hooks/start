@@ -18,9 +18,9 @@ then
     mkdir -p custom/conf
     wget https://raw.githubusercontent.com/gogits/gogs/master/conf/app.ini -O custom/conf/app.ini
     echo "edit it after"
-    sed -i "" "s/^DOMAIN.*/DOMAIN = $OPENSHIFT_APP_DNS/g" custom/conf/app.ini 
-    sed -i "" "s/^HTTP_ADDR.*/HTTP_ADDR = $OPENSHIFT_DIY_IP/g" custom/conf/app.ini 
-    sed -i "" "s/^HTTP_PORT.*/HTTP_PORT = $OPENSHIFT_DIY_PORT/g" custom/conf/app.ini 
+    sed -i "s/^DOMAIN.*/DOMAIN = $OPENSHIFT_APP_DNS/g" custom/conf/app.ini 
+    sed -i "s/^HTTP_ADDR.*/HTTP_ADDR = $OPENSHIFT_DIY_IP/g" custom/conf/app.ini 
+    sed -i "s/^HTTP_PORT.*/HTTP_PORT = $OPENSHIFT_DIY_PORT/g" custom/conf/app.ini 
     #cd ..
 fi
 # end Prepare gogs
