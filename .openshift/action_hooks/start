@@ -15,7 +15,7 @@ then
     cd $OPENSHIFT_DATA_DIR  
     wget https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip -O temp.zip; unzip temp.zip; rm temp.zip
     cd gogs
-    mkdir custom/conf
+    mkdir -p custom/conf
     wget https://raw.githubusercontent.com/gogits/gogs/master/conf/app.ini -O custom/conf/app.ini
     echo "edit it after"
     sed -i "" "s/^DOMAIN.*/DOMAIN = $OPENSHIFT_APP_DNS/g" custom/conf/app.ini 
