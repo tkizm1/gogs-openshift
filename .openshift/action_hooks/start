@@ -5,7 +5,7 @@
 #nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy |& /usr/bin/logshifter -tag diy &
 set -e
 
-: '
+#: '
 # Prepare the runtime
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
     curl https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz |
@@ -27,8 +27,9 @@ cd $OPENSHIFT_DATA_DIR/gogs
 #kill -9 `ps aux | grep 'gogs' | grep -v grep | awk '{print $2}'` >/dev/null 2>&1 || true
 #echo $LOGNAME,$USER
 #su $OPENSHIFT_DATA_DIR|cut -d "/" -f 5
-echo $OPENSHIFT_GEAR_UUID
+#echo $OPENSHIFT_GEAR_UUID
 export HOME=$OPENSHIFT_DATA_DIR
+export USERNAME=$OPENSHIFT_APP_UUID
 cd $HOME/gogs
 HOME=$OPENSHIFT_DATA_DIR nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid 
 exit
@@ -38,25 +39,25 @@ exit
 #pwd
 #cd hello
 #go build
-'
+#'
 #edit in 
 #cd $OPENSHIFT_DATA_DIR/gocode/src/github.com/gogits/gogs/
-export GOROOT=$OPENSHIFT_DATA_DIR/go
-export PATH=$PATH:$GOROOT/bin
-export GOPATH=$OPENSHIFT_DATA_DIR/gocode
+#export GOROOT=$OPENSHIFT_DATA_DIR/go
+#export PATH=$PATH:$GOROOT/bin
+#export GOPATH=$OPENSHIFT_DATA_DIR/gocode
 #mkdir -p $GOPATH/src/github.com/gogits
-cd $GOPATH/src/github.com/gogits
+#cd $GOPATH/src/github.com/gogits
 #git clone -b develop https://github.com/gogits/gogs
-cd gogs
+#cd gogs
 #go get -u -v ./...
-go get -u -tags "sqlite redis memecache" github.com/gogits/gogs
+#go get -u -tags "sqlite redis memecache" github.com/gogits/gogs
 #go build
-go build -tags "sqlite redis memecache"
+#go build -tags "sqlite redis memecache"
 #mkdir -p custom/conf
 #cp $OPENSHIFT_DATA_DIR/gogs/conf/app.ini custom/conf/app.ini
-export HOME=$OPENSHIFT_DATA_DIR
-export USERNAME=$OPENSHIFT_APP_UUID
-nohup ./gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid
-echo 'done'
-exit
+#export HOME=$OPENSHIFT_DATA_DIR
+#export USERNAME=$OPENSHIFT_APP_UUID
+#nohup ./gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid
+#echo 'done'
+#exit
 
