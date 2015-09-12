@@ -30,7 +30,6 @@ fi
 # end Prepare gogs
 export GOROOT=$OPENSHIFT_DATA_DIR/go
 export PATH=$PATH:$GOROOT/bin
-cd $OPENSHIFT_DATA_DIR/gogs
 #kill -9 `ps aux | grep 'gogs' | grep -v grep | awk '{print $2}'` >/dev/null 2>&1 || true
 #echo $LOGNAME,$USER
 #su $OPENSHIFT_DATA_DIR|cut -d "/" -f 5
