@@ -1,7 +1,10 @@
 Just works use diy and mysql
 ```
  rhc app create diy diy-0.1 --from-code https://github.com/tkisme/gogs-openshift
+ #optional choose mysql
  rhc cartridge add mysql-5.5
+ #delete this is still simple
+ rhc app delete diy --confirm
 ```
 
 go use 286M,gogs use 38M
