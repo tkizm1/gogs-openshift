@@ -11,6 +11,7 @@ rhc app-show --gears quota
 
 If you want build from source
 ```
+rhc ssh
 cd $OPENSHIFT_DATA_DIR/gogs
 export GOROOT=$OPENSHIFT_DATA_DIR/go
 export PATH=$PATH:$GOROOT/bin
