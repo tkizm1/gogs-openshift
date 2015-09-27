@@ -29,11 +29,9 @@ fi
 # end Prepare gogs
 export GOROOT=$OPENSHIFT_DATA_DIR/go
 export PATH=$PATH:$GOROOT/bin
-cd $OPENSHIFT_DATA_DIR/gogs
 export HOME=$OPENSHIFT_DATA_DIR
 export USERNAME=$OPENSHIFT_APP_UUID
 cd $HOME/gogs
-HOME=$OPENSHIFT_DATA_DIR nohup $OPENSHIFT_DATA_DIR/gogs/gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid 
+HOME=$OPENSHIFT_DATA_DIR nohup $OPENSHIFT_DATA_DIR/gogs/gogs web >>$OPENSHIFT_DATA_DIR/gogs/err.log 2>&1 & echo $! > $OPENSHIFT_DATA_DIR/gogs/run.pid 
 exit
-#nohup $OPENSHIFT_DATA_DIR/gogs/gogs web -c $OPENSHIFT_DATA_DIR/gogs/conf/app.ini>>err.log 2>&1 &
 
