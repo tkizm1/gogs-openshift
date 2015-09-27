@@ -7,33 +7,29 @@ set -e
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
     curl https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz |
 tar -xzf - -C $OPENSHIFT_DATA_DIR
-#curl https://github.com/gogits/gogs/releases/download/v0.6.9/linux_amd64.zip | tar -xf - -C $OPENSHIFT_DATA_DIR
 # end Prepare the runtime
 # Prepare the gogs
-#if [ ! -d $OPENSHIFT_DATA_DIR/gogs ]; 
-#then
 cd $OPENSHIFT_DATA_DIR
 download_url=https://github.com/gogits/gogs/releases/download/v0.6.15/linux_amd64.zip
 wget $download_url -O temp.zip; unzip -o temp.zip; rm temp.zip
-cd gogs
-mkdir -p custom/conf
-wget https://raw.githubusercontent.com/gogits/gogs/master/conf/app.ini -O custom/conf/app.ini
-echo "edit it after"
-sed -i "s/^DOMAIN.*/DOMAIN = $OPENSHIFT_APP_DNS/g" custom/conf/app.ini 
-sed -i "s/^HTTP_ADDR.*/HTTP_ADDR = $OPENSHIFT_DIY_IP/g" custom/conf/app.ini 
-sed -i "s/^HTTP_PORT.*/HTTP_PORT = $OPENSHIFT_DIY_PORT/g" custom/conf/app.ini 
-sed -i "s/^DISABLE_SSH.*/DISABLE_SSH = true/g" custom/conf/app.ini
-echo "mysql $OPENSHIFT_MYSQL_DB_URL user:password@host:port"
+if [ ! -f $OPENSHIFT_DATA_DIR/gogs/custom/conf/app.ini ];
+then
+    cd gogs
+    mkdir -p custom/conf
+    wget https://raw.githubusercontent.com/gogits/gogs/master/conf/app.ini -O custom/conf/app.ini
+    echo "edit it after"
+    sed -i "s/^DOMAIN.*/DOMAIN = $OPENSHIFT_APP_DNS/g" custom/conf/app.ini 
+    sed -i "s/^HTTP_ADDR.*/HTTP_ADDR = $OPENSHIFT_DIY_IP/g" custom/conf/app.ini 
+    sed -i "s/^HTTP_PORT.*/HTTP_PORT = $OPENSHIFT_DIY_PORT/g" custom/conf/app.ini 
+    sed -i "s/^DISABLE_SSH.*/DISABLE_SSH = true/g" custom/conf/app.ini
+    echo "mysql $OPENSHIFT_MYSQL_DB_URL user:password@host:port"
+fi
 # if want edit more
 # vi $OPENSHIFT_DATA_DIR/gogs/custom/conf/app.ini  
 # end Prepare gogs
 export GOROOT=$OPENSHIFT_DATA_DIR/go
 export PATH=$PATH:$GOROOT/bin
 cd $OPENSHIFT_DATA_DIR/gogs
-#kill -9 `ps aux | grep 'gogs' | grep -v grep | awk '{print $2}'` >/dev/null 2>&1 || true
-#echo $LOGNAME,$USER
-#su $OPENSHIFT_DATA_DIR|cut -d "/" -f 5
-#echo $OPENSHIFT_GEAR_UUID
 export HOME=$OPENSHIFT_DATA_DIR
 export USERNAME=$OPENSHIFT_APP_UUID
 cd $HOME/gogs
