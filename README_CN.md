@@ -1,4 +1,4 @@
-[Read English](https://github.com/tkisme/gogs-openshift)
+[Read English](README.md)
 
 使用第一种方式安装单独的gogs快速简洁，在Windows平台运行rhc命令需要安装Ruby和Git并添加PATH变量。
 
@@ -13,7 +13,7 @@ Ruby2.0以及以上的版本似乎安装rhc后无法使用rhc命令。需要安�
 只是搭建使用DIY和mysql
 [![Join the chat at https://gitter.im/tkisme/gogs-openshift](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tkisme/gogs-openshift?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ```
- rhc app create diy diy-0.1 --from-code https://github.com/tkisme/gogs-openshift
+ rhc app create diy diy-0.1 --from-code https://github.com/Sonic853/gogs-openshift
  #可以选择安装的mysql
  rhc cartridge add mysql-5.5
  #删除这仍然是简单的
