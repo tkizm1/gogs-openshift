@@ -24,6 +24,8 @@ then
     sed -i "s/^HTTP_PORT.*/HTTP_PORT = $OPENSHIFT_DIY_PORT/g" custom/conf/app.ini 
     sed -i "s/^DISABLE_SSH.*/DISABLE_SSH = true/g" custom/conf/app.ini
     echo "mysql $OPENSHIFT_MYSQL_DB_URL user:password@host:port"
+else
+    cp $OPENSHIFT_REPO_DIR/app.ini $OPENSHIFT_DATA_DIR/gogs/custom/conf/app.ini
 fi
 # if want edit more
 # vi $OPENSHIFT_DATA_DIR/gogs/custom/conf/app.ini  
