@@ -40,4 +40,4 @@ rm -rf output_amd64
 gear restart
 ```
 
-if you want gogs support ssh on openshift,just [try edit gogs/repo.go](https://github.com/gogits/gogs/blob/master/models/repo.go#L314)
+if you want gogs support ssh on openshift,just [try edit gogs/repo.go](https://github.com/gogits/gogs/blob/master/models/repo.go)
