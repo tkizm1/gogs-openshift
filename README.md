@@ -39,3 +39,5 @@ cp -r output_amd64/* gogs/
 rm -rf output_amd64
 gear restart
 ```
+
+if you want gogs support ssh on openshift,just [try edit gogs/repo.go](https://github.com/gogits/gogs/blob/master/models/repo.go)
