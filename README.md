@@ -1,4 +1,7 @@
-Just works use diy and mysql
+# gogs-openshift
+
+## Instructions
+Just works use diy
 [![Join the chat at https://gitter.im/tkisme/gogs-openshift](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tkisme/gogs-openshift?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ```
  rhc app create diy diy-0.1 --from-code https://github.com/tkisme/gogs-openshift
@@ -13,6 +16,28 @@ go use 286M,gogs use 38M
 rhc app-show --gears quota
 ```
 
+## Upgrade gogs
+```
+ git remote add github git@github.com:tkisme/gogs-openshift.git
+ git pull github master
+ git push
+```
+
+## Upgrade by your own
+this is just for people who want to upgrade in hurry
+```
+ vi .openshift/action_hooks/start
+ git commit -am "upgrade gogs"
+ git push
+```
+change download_url to anyversion you want
+
+I change [v0.8.43 to v0.9.13](https://github.com/tkisme/gogs-openshift/commit/5401b1ec672ac38bd08cf50afb000f7e5fce6a0c)
+
+Now it upgrade gogs to v0.9.13
+
+
+## Build from source
 If you want build from source
 ```
 rhc ssh
@@ -40,4 +65,5 @@ rm -rf output_amd64
 gear restart
 ```
 
+## Fix git clone ssh link of gogs 
 if you want gogs support ssh on openshift,just [try edit gogs/repo.go](https://github.com/gogits/gogs/blob/master/models/repo.go)
