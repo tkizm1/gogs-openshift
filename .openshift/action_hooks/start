@@ -5,13 +5,13 @@ set -e
 
 # Prepare the runtime
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
-    curl https://storage.googleapis.com/golang/go1.5.1.linux-amd64.tar.gz |
+    curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz |
 tar -xzf - -C $OPENSHIFT_DATA_DIR
 # end Prepare the runtime
 # Prepare the gogs
 cd $OPENSHIFT_DATA_DIR
 # edit here if you got a better version
-download_url=https://github.com/gogits/gogs/releases/download/v0.8.43/linux_amd64.zip
+download_url=https://github.com/gogits/gogs/releases/download/v0.9.13/linux_amd64.zip
 wget $download_url -O temp.zip; unzip -o temp.zip; rm temp.zip
 if [ ! -f $OPENSHIFT_DATA_DIR/gogs/custom/conf/app.ini ];
 then
