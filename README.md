@@ -66,4 +66,11 @@ gear restart
 ```
 
 ## Fix git clone ssh link of gogs 
-if you want gogs support ssh on openshift,just [try edit gogs/repo.go](https://github.com/gogits/gogs/blob/master/models/repo.go)
+if you want gogs support ssh on openshift,just [try edit gogs/repo.go](https://github.com/gogits/gogs/blob/master/models/repo.go#L1084)
+
+```
+func RepoPath(userName, repoName string) string {
+// EDIT HERE!!!!!
+	return filepath.Join(UserPath(userName), strings.ToLower(repoName)+".git")
+}
+```
