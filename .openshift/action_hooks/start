@@ -4,13 +4,14 @@
 set -e
 
 # Prepare the runtime
+# that is not required for who won't build from sources, you can make it empty so it will never download afterwards
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
     curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz |
 tar -xzf - -C $OPENSHIFT_DATA_DIR
 # end Prepare the runtime
 # Prepare the gogs
 cd $OPENSHIFT_DATA_DIR
-# edit here if you got a better version, if you won't want build by hands later you should not download it
+# edit here if you got a better version, if you won't want build from sources later you should not download it
 download_url=https://github.com/gogits/gogs/releases/download/v0.9.13/linux_amd64.zip
 wget $download_url -O temp.zip; unzip -o temp.zip; rm temp.zip
 if [ ! -f $OPENSHIFT_DATA_DIR/gogs/custom/conf/app.ini ];
