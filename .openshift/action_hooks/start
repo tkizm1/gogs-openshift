@@ -7,7 +7,7 @@ set -e
 # that is not required for who won't build from sources,
 # you can make it empty so it will never download afterwards
 [ -d $OPENSHIFT_DATA_DIR/go ] ||
-    curl https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz |
+    curl https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz |
 tar -xzf - -C $OPENSHIFT_DATA_DIR
 # end Prepare the runtime
 # Prepare the gogs
