@@ -15,7 +15,7 @@ tar -xzf - -C $OPENSHIFT_DATA_DIR
 # Prepare the gogs
 cd $OPENSHIFT_DATA_DIR
 # edit here if you got a better version
-download_url=https://github.com/gogits/gogs/releases/download/v0.9.113/linux_amd64.zip
+download_url=https://github.com/gogits/gogs/releases/download/v0.9.128/linux_amd64.zip
 wget $download_url -O temp.zip; unzip -o temp.zip; rm temp.zip
 if [ ! -f $OPENSHIFT_DATA_DIR/gogs/custom/conf/app.ini ];
 then
