@@ -4,6 +4,7 @@
 Just works use diy
 [![Join the chat at https://gitter.im/tkisme/gogs-openshift](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tkisme/gogs-openshift?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ```
+ # execute it on local,not in server
  rhc app create diy diy-0.1 --from-code https://github.com/tkisme/gogs-openshift
  #optional choose mysql
  rhc cartridge add mysql-5.5
