@@ -75,3 +75,12 @@ func RepoPath(userName, repoName string) string {
 	return filepath.Join(UserPath(userName), strings.ToLower(repoName)+".git")
 }
 ```
+
+## Q&A
+function "AppSubUrl" not defined
+try
+```
+# cd to gogs app root
+rm -rf templates/
+```
+and install again
